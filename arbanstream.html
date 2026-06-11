@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ArbanTV | MemeyAI</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        :root {
+            --brand: #0B6CF6;
+            --brand-2: #00D4AA;
+            --orange: #FF5A1F;
+            --dark: #0A0E1A;
+            --panel: rgba(255, 255, 255, 0.08);
+            --line: rgba(255, 255, 255, 0.14);
+            --text: #E8EEF8;
+            --muted: #A8B3C7;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img,
+        video {
+            max-width: 100%;
+            display: block;
+        }
+
+        .page {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(11, 108, 246, 0.28), transparent 34%),
+                radial-gradient(circle at 85% 20%, rgba(0, 212, 170, 0.18), transparent 30%),
+                linear-gradient(180deg, #0A0E1A 0%, #111827 48%, #0A0E1A 100%);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        html {
+            interpolate-size: allow-keywords;
+        }
+
+        /* Desktop navbar */
+        nav {
+            width: auto;
+            max-width: calc(100% - 2rem);
+            margin: 0;
+            padding: 8px;
+            border-radius: 8px;
+            position: fixed;
+            top: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+        @supports (corner-shape: squircle) {
+            nav {
+                border-radius: 24px;
+                border-shape: squircle;
+            }
+        }
+
+        nav ul:has(:not(:hover)) {
+            anchor-name: --test;
+        }
+
+        nav::before {
+            z-index: -2;
+            background-attachment: scroll;
+            background-image: url('assets/images/header background.webp');
+        }
+
+        nav::after {
+            backdrop-filter: blur(2px);
+            background-color: hsl(200 100% 100% / 0.1);
+            z-index: -1;
+        }
+
+        nav>ul {
+            position: relative;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        nav>ul::after {
+            content: "";
+            position: absolute;
+            z-index: -3;
+            inset: -8px;
+            border-radius: 8px;
+            background: hsl(0 0% 0% / 0.8);
+            backdrop-filter: blur(2px);
+        }
+
+        @supports (corner-shape: squircle) {
+            nav>ul::after {
+                border-radius: 24px;
+                border-shape: squircle;
+            }
+        }
+
+        nav::before,
+        nav::after {
+            content: "";
+            border-radius: 8px;
+            position-anchor: --test;
+            position: absolute;
+            top: calc(anchor(bottom) - 4px);
+            left: calc(anchor(left) + 1rem);
+            right: calc(anchor(right) + 1rem);
+            bottom: anchor(bottom);
+            transition: 500ms;
+            transition-timing-function: linear(0,
+                    0.008 1.1%,
+                    0.031 2.2%,
+                    0.129 4.8%,
+                    0.257 7.2%,
+                    0.671 14.2%,
+                    0.789 16.5%,
+                    0.881 18.6%,
+                    0.957 20.7%,
+                    1.019 22.9%,
+                    1.063 25.1%,
+                    1.094 27.4%,
+                    1.114 30.7%,
+                    1.112 34.5%,
+                    1.018 49.9%,
+                    0.99 59.1%,
+                    1);
+            pointer-events: none;
+        }
+
+        nav:has(a:hover)::before,
+        nav:has(a:hover)::after {
+            @supports (corner-shape: squircle) {
+                corner-shape: squircle;
+                border-radius: 50%;
+            }
+
+            top: anchor(top);
+            left: anchor(left);
+            right: anchor(right);
+        }
+
+        nav:has(li:first-of-type a:hover)::before,
+        nav:has(li:first-of-type a:hover)::after {
+            @supports (corner-shape: squircle) {
+                border-radius: 32px 50% 50% 32px;
+            }
+        }
+
+        nav:has(li:last-of-type a:hover)::before,
+        nav:has(li:last-of-type a:hover)::after {
+            @supports (corner-shape: squircle) {
+                border-radius: 50% 32px 32px 50%;
+            }
+        }
+
+        nav a {
+            display: block;
+            padding: 0.7rem 1rem;
+            text-decoration: none;
+            color: white;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            border-radius: 6px;
+        }
+
+        nav a:hover {
+            position: relative;
+            display: block;
+            anchor-name: --test;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        html {
+            color-scheme: dark;
+        }
+
+        /* Hamburger button - hidden on desktop */
+        .hamburger-btn {
+            display: none;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.5rem;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 12px;
+            width: calc(100% - 2rem);
+            margin: 1rem;
+            text-align: left;
+            font-weight: 600;
+            z-index: 1001;
+            position: relative;
+        }
+
+        .hamburger-btn i {
+            margin-right: 10px;
+        }
+
+        /* Mobile menu */
+        .nav-mobile {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: auto;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 26, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 16px 24px 28px;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 999;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .nav-mobile.open {
+            display: flex;
+            transform: translateY(0);
+        }
+
+        .nav-mobile a {
+            color: var(--text-soft);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 12px 16px;
+            border-radius: 10px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .nav-mobile a:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+        }
+
+        .nav-mobile .nav-cta {
+            background: var(--brand) !important;
+            color: var(--white) !important;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .nav-mobile .nav-donate {
+            background: rgba(231, 76, 60, 0.8) !important;
+            color: var(--white) !important;
+            text-align: center;
+        }
+
+        /* Special nav link styling */
+        .nav-cta {
+            background: rgba(11, 108, 246, 0.2);
+            border-radius: 6px;
+        }
+
+        .nav-donate {
+            background: rgba(231, 76, 60, 0.2);
+            border-radius: 6px;
+        }
+
+        /* RESPONSIVE BREAKPOINTS */
+        @media (max-width: 1100px) {
+            nav a {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            nav>ul {
+                gap: 0.1rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                margin: 1rem auto;
+                width: 95%;
+            }
+
+            nav a {
+                padding: 0.5rem 0.6rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* Hide desktop navbar, show hamburger */
+            nav:first-of-type {
+                display: none;
+            }
+
+            .hamburger-btn {
+                display: flex;
+                align-items: center;
+                position: fixed;
+                top: 10px;
+                left: 0;
+                right: 0;
+                z-index: 1002;
+                margin: 0.5rem;
+                width: calc(100% - 1rem);
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(16px);
+            }
+
+            body {
+                padding-top: 70px;
+            }
+
+            /* Adjust hero spacing for mobile navbar */
+            #hero {
+                padding-top: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hamburger-btn {
+                font-size: 1.2rem;
+                padding: 10px 16px;
+            }
+
+            .nav-mobile a {
+                font-size: 0.9rem;
+                padding: 10px 14px;
+            }
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
+            align-items: center;
+            gap: 48px;
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 128px 0 72px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            padding: 8px 11px;
+            border: 1px solid rgba(0, 212, 170, 0.35);
+            border-radius: 999px;
+            background: rgba(0, 212, 170, 0.09);
+            color: #A9FFF0;
+            font-size: 0.86rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            max-width: 720px;
+            font-size: clamp(3rem, 7vw, 6.8rem);
+            line-height: 0.92;
+            letter-spacing: 0;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            color: var(--brand-2);
+        }
+
+        .hero p {
+            max-width: 640px;
+            color: var(--muted);
+            font-size: clamp(1rem, 2vw, 1.18rem);
+            margin-bottom: 28px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 34px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 46px;
+            padding: 12px 17px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .btn.primary {
+            background: var(--brand);
+            color: var(--white);
+            border-color: transparent;
+            box-shadow: 0 18px 40px rgba(11, 108, 246, 0.28);
+        }
+
+        .btn.secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            max-width: 610px;
+        }
+
+        .stat {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--white);
+            font-size: 1.45rem;
+            line-height: 1.1;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 0.86rem;
+        }
+
+        .media-stage {
+            position: relative;
+            min-height: 560px;
+            display: grid;
+            align-items: center;
+        }
+
+        .feature-card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+        }
+
+        .feature-card video {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .video-caption {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px;
+            border-top: 1px solid var(--line);
+        }
+
+        .video-caption strong {
+            color: var(--white);
+        }
+
+        .video-caption span {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .floating-note {
+            position: absolute;
+            right: -8px;
+            bottom: 34px;
+            width: min(280px, 80%);
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(10, 14, 26, 0.84);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 22px 70px rgba(0, 0, 0, 0.34);
+        }
+
+        .floating-note i {
+            color: var(--brand-2);
+            margin-right: 8px;
+        }
+
+        section {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 84px 0;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 26px;
+            margin-bottom: 28px;
+        }
+
+        .section-head h2 {
+            color: var(--white);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1;
+            letter-spacing: 0;
+        }
+
+        .section-head p {
+            max-width: 560px;
+            color: var(--muted);
+        }
+
+        .creator-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .creator-card {
+            min-height: 210px;
+            padding: 20px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            cursor: pointer;
+            transition: 0.22s ease;
+        }
+
+        .creator-card:hover,
+        .creator-card.active {
+            transform: translateY(-4px);
+            border-color: rgba(0, 212, 170, 0.6);
+            background: rgba(0, 212, 170, 0.1);
+        }
+
+        .creator-card i {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--brand-2);
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+        }
+
+        .creator-card h3 {
+            color: var(--white);
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .creator-card p {
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+
+        .showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            align-items: stretch;
+        }
+
+        .showcase img {
+            height: 100%;
+            min-height: 360px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+        }
+
+        .tabs {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .tab-btn {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.06);
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        .tab-btn.active {
+            color: #07110F;
+            background: var(--brand-2);
+            border-color: transparent;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+            animation: fadeUp 0.28s ease both;
+        }
+
+        .tab-panel h3 {
+            color: var(--white);
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .tab-panel p {
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .check-list {
+            display: grid;
+            gap: 10px;
+            list-style: none;
+        }
+
+        .check-list li {
+            display: flex;
+            gap: 10px;
+            color: var(--text);
+        }
+
+        .check-list i {
+            color: var(--brand-2);
+            margin-top: 5px;
+        }
+
+        .cta-band {
+            width: min(1180px, calc(100% - 40px));
+            margin: 30px auto 0;
+            padding: 36px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background:
+                linear-gradient(135deg, rgba(11, 108, 246, 0.22), rgba(0, 212, 170, 0.12)),
+                rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .cta-band h2 {
+            color: var(--white);
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            line-height: 1.05;
+            margin-bottom: 8px;
+        }
+
+        .cta-band p {
+            color: var(--muted);
+            max-width: 720px;
+        }
+
+        footer {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 54px 0 30px;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            border-top: 1px solid var(--line);
+        }
+
+        .socials {
+            display: flex;
+            gap: 10px;
+        }
+
+        .socials a {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--white);
+        }
+
+        .whatsapp {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 25;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 999px;
+            background: #25D366;
+            color: #06160C;
+            font-weight: 900;
+            box-shadow: 0 18px 44px rgba(37, 211, 102, 0.28);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 920px) {
+            .menu-btn {
+                display: grid;
+                place-items: center;
+            }
+
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .navbar.open {
+                align-items: flex-start;
+                flex-wrap: wrap;
+            }
+
+            .navbar.open .nav-links {
+                display: grid;
+                width: 100%;
+                gap: 4px;
+            }
+
+            .navbar.open .nav-cta {
+                display: inline-flex;
+            }
+
+            .hero,
+            .showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .media-stage {
+                min-height: auto;
+            }
+
+            .creator-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-head,
+            .cta-band,
+            footer {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .hero {
+                width: min(100% - 28px, 1180px);
+                padding-top: 118px;
+            }
+
+            section,
+            .cta-band,
+            footer {
+                width: min(100% - 28px, 1180px);
+            }
+
+            .stats,
+            .creator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 3.1rem;
+            }
+
+            .floating-note {
+                position: static;
+                width: 100%;
+                margin-top: 14px;
+            }
+
+            .whatsapp span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/images/Memeyailogo.jpg" alt="Logo">
+            </a>
+        </div>
+    </div>
+
+    <div class="page">
+        <nav>
+            <ul>
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="campaign.html">Campaigns</a>
+                <a href="arbanstream.html">ArbanTV</a>
+                <a href="hub.html">Hub</a>
+                <a href="contact.html" class="nav-cta">Contact</a>
+            </ul>
+        </nav>
+
+        <!-- MOBILE NAVBAR -->
+        <div class="nav-mobile" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="campaign.html">Campaigns</a>
+            <a href="arbanstream.html">ArbanTV</a>
+            <a href="hub.html">Hub</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
+        </div>
+
+
+        </header>
+
+        <main>
+            <section class="hero">
+                <div>
+                    <div class="eyebrow">
+                        <i class="fa-solid fa-bolt"></i>
+                        Powered by MemeyAI
+                    </div>
+
+                    <h1>ArbanTV for Africa’s <span>digital creators</span></h1>
+
+                    <p>
+                        A creator-first media platform helping storytellers, influencers, videographers,
+                        podcasters, and meme creators grow their audience, earn from their craft, and collaborate across
+                        Africa.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="btn primary" href="https://www.youtube.com/@arbantvke" target="_blank" rel="noopener">
+                            <i class="fa-brands fa-youtube"></i>
+                            Watch ArbanTV
+                        </a>
+                        <a class="btn secondary" href="#creator-tools">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            Explore Tools
+                        </a>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat">
+                            <strong data-count="4">0</strong>
+                            <span>Creator paths</span>
+                        </div>
+                        <div class="stat">
+                            <strong data-count="9">0</strong>
+                            <span>Regional partners</span>
+                        </div>
+                        <div class="stat">
+                            <strong data-count="24">0</strong>
+                            <span>Content energy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media-stage">
+                    <div class="feature-card">
+                        <video controls poster="assets/img/ArbanTv.jpg">
+                            <source src="assets/videos/arbanstream preview.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-caption">
+                            <div>
+                                <strong>ArbanTV Spotlight</strong>
+                                <br />
+                                <span>Stories, trends, culture, and creator moments.</span>
+                            </div>
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+            <section id="creator-tools">
+                <div class="section-head">
+                    <h2>Creator growth, made practical</h2>
+                    <p>
+                        ArbanTV brings content, community, and tools into one place so creators can focus on making work
+                        that travels.
+                    </p>
+                </div>
+
+                <div class="creator-grid">
+                    <article class="creator-card active">
+                        <i class="fa-solid fa-video"></i>
+                        <h3>Video Creators</h3>
+                        <p>Showcase documentaries, skits, interviews, street stories, and visual campaigns.</p>
+                    </article>
+
+                    <article class="creator-card">
+                        <i class="fa-solid fa-podcast"></i>
+                        <h3>Podcasters</h3>
+                        <p>Record, package, and distribute conversations with a sharper media presence.</p>
+                    </article>
+
+                    <article class="creator-card">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <h3>Influencers</h3>
+                        <p>Turn audience attention into campaign value, partnerships, and measurable reach.</p>
+                    </article>
+
+                    <article class="creator-card">
+                        <i class="fa-solid fa-face-laugh-beam"></i>
+                        <h3>Meme Creators</h3>
+                        <p>Build cultural moments with better visibility, creative briefs, and brand-safe formats.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-head">
+                    <h2>Inside ArbanTV</h2>
+                    <p>
+                        A more polished experience for creators, partners, and audiences discovering what MemeyAI is
+                        building.
+                    </p>
+                </div>
+
+                <div class="showcase">
+                    <img src="assets/images/Podcast Studio.jpeg" alt="ArbanTV podcast studio" />
+
+                    <div class="tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-btn active" data-tab="visibility">Visibility</button>
+                            <button class="tab-btn" data-tab="earn">Earn</button>
+                            <button class="tab-btn" data-tab="community">Community</button>
+                        </div>
+
+                        <div class="tab-panel active" id="visibility">
+                            <h3>Be seen by the right audience</h3>
+                            <p>
+                                ArbanTV gives creators a branded media space where their work can be discovered,
+                                packaged, and shared.
+                            </p>
+                            <ul class="check-list">
+                                <li><i class="fa-solid fa-check"></i><span>Featured creator videos and campaign
+                                        highlights</span></li>
+                                <li><i class="fa-solid fa-check"></i><span>Stronger presentation for brands and
+                                        collaborators</span></li>
+                                <li><i class="fa-solid fa-check"></i><span>Content formats made for social
+                                        distribution</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-panel" id="earn">
+                            <h3>Turn creativity into opportunity</h3>
+                            <p>
+                                Connect your content to sponsorships, activations, digital campaigns, and creator-led
+                                collaborations.
+                            </p>
+                            <ul class="check-list">
+                                <li><i class="fa-solid fa-check"></i><span>Brand campaign participation</span></li>
+                                <li><i class="fa-solid fa-check"></i><span>Creator packages and content services</span>
+                                </li>
+                                <li><i class="fa-solid fa-check"></i><span>Monetization pathways for growing
+                                        talent</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-panel" id="community">
+                            <h3>Grow with other creators</h3>
+                            <p>
+                                ArbanTV is designed as a creator network, not just a video page.
+                            </p>
+                            <ul class="check-list">
+                                <li><i class="fa-solid fa-check"></i><span>Collaborations across regions and
+                                        niches</span></li>
+                                <li><i class="fa-solid fa-check"></i><span>Shared production and campaign
+                                        resources</span></li>
+                                <li><i class="fa-solid fa-check"></i><span>A community celebrating African digital
+                                        culture</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="cta-band">
+                <div>
+                    <h2>Ready to join ArbanTV?</h2>
+                    <p>
+                        Subscribe for new creator stories, exclusive content, campaign drops, and behind-the-scenes
+                        updates.
+                    </p>
+                </div>
+                <a class="btn primary" href="https://www.youtube.com/@arbantvke" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-youtube"></i>
+                    Subscribe Now
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <div>
+                <strong style="color:#fff;">MemeyAI Digital Solutions</strong>
+                <p>Nairobi, Kenya | Relations@memeyai.com | +254 794 153677</p>
+            </div>
+
+            <div class="socials">
+                <a href="https://x.com/MemeyAIOfficial" target="_blank" rel="noopener" aria-label="X"><i
+                        class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61565001413644" target="_blank" rel="noopener"
+                    aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/memeyaiofficial/" target="_blank" rel="noopener"
+                    aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/102518929/admin/page-posts/published/" target="_blank"
+                    rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </footer>
+
+        <a class="whatsapp" href="https://wa.me/254794153677" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>Hello There!</span>
+        </a>
+    </div>
+
+    <script>
+        const navbar = document.getElementById("navbar");
+        const menuBtn = document.getElementById("menuBtn");
+
+        menuBtn.addEventListener("click", () => {
+            navbar.classList.toggle("open");
+            const icon = menuBtn.querySelector("i");
+            icon.className = navbar.classList.contains("open")
+                ? "fa-solid fa-xmark"
+                : "fa-solid fa-bars";
+        });
+
+        document.querySelectorAll(".creator-card").forEach((card) => {
+            card.addEventListener("click", () => {
+                document.querySelectorAll(".creator-card").forEach((item) => item.classList.remove("active"));
+                card.classList.add("active");
+            });
+        });
+
+        document.querySelectorAll(".tab-btn").forEach((button) => {
+            button.addEventListener("click", () => {
+                const target = button.dataset.tab;
+
+                document.querySelectorAll(".tab-btn").forEach((item) => item.classList.remove("active"));
+                document.querySelectorAll(".tab-panel").forEach((panel) => panel.classList.remove("active"));
+
+                button.classList.add("active");
+                document.getElementById(target).classList.add("active");
+            });
+        });
+
+        const counters = document.querySelectorAll("[data-count]");
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                const el = entry.target;
+                const target = Number(el.dataset.count);
+                let current = 0;
+                const step = Math.max(1, Math.ceil(target / 28));
+
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+
+                    el.textContent = target === 24 ? current + "/7" : current + "+";
+                }, 36);
+
+                countObserver.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach((counter) => countObserver.observe(counter));
+    </script>
+</body>
+
+</html>

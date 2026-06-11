@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>MemeyAI - Services</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --brand: #0B6CF6;
+            --brand-dark: #0850C0;
+            --accent: #00D4AA;
+            --dark: #0A0E1A;
+            --dark-2: #111827;
+            --dark-3: #1C2333;
+            --muted: #6B7280;
+            --white: #FFFFFF;
+            --text: #E2E8F0;
+            --text-soft: #94A3B8;
+            --radius: 12px;
+            --nav-h: 70px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            color-scheme: dark;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .page-bg {
+            min-height: 100vh;
+            background:
+                linear-gradient(180deg, rgba(10, 14, 26, .25), rgba(10, 14, 26, 1) 88%),
+                url("assets/images/background.png") center / cover no-repeat;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+
+        /* ─── NAVBAR (OPTIMIZED FOR MOBILE) ─── */
+        html {
+            interpolate-size: allow-keywords;
+        }
+
+        /* Desktop navbar */
+        nav {
+            width: auto;
+            max-width: calc(100% - 2rem);
+            margin: 0;
+            padding: 8px;
+            border-radius: 8px;
+            position: fixed;
+            top: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+        @supports (corner-shape: squircle) {
+            nav {
+                border-radius: 24px;
+                border-shape: squircle;
+            }
+        }
+
+        nav ul:has(:not(:hover)) {
+            anchor-name: --test;
+        }
+
+        nav::before {
+            z-index: -2;
+            background-attachment: scroll;
+            background-image: url('assets/images/header background.webp');
+        }
+
+        nav::after {
+            backdrop-filter: blur(2px);
+            background-color: hsl(200 100% 100% / 0.1);
+            z-index: -1;
+        }
+
+        nav>ul {
+            position: relative;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        nav>ul::after {
+            content: "";
+            position: absolute;
+            z-index: -3;
+            inset: -8px;
+            border-radius: 8px;
+            background: hsl(0 0% 0% / 0.8);
+            backdrop-filter: blur(2px);
+        }
+
+        @supports (corner-shape: squircle) {
+            nav>ul::after {
+                border-radius: 24px;
+                border-shape: squircle;
+            }
+        }
+
+        nav::before,
+        nav::after {
+            content: "";
+            border-radius: 8px;
+            position-anchor: --test;
+            position: absolute;
+            top: calc(anchor(bottom) - 4px);
+            left: calc(anchor(left) + 1rem);
+            right: calc(anchor(right) + 1rem);
+            bottom: anchor(bottom);
+            transition: 500ms;
+            transition-timing-function: linear(0,
+                    0.008 1.1%,
+                    0.031 2.2%,
+                    0.129 4.8%,
+                    0.257 7.2%,
+                    0.671 14.2%,
+                    0.789 16.5%,
+                    0.881 18.6%,
+                    0.957 20.7%,
+                    1.019 22.9%,
+                    1.063 25.1%,
+                    1.094 27.4%,
+                    1.114 30.7%,
+                    1.112 34.5%,
+                    1.018 49.9%,
+                    0.99 59.1%,
+                    1);
+            pointer-events: none;
+        }
+
+        nav:has(a:hover)::before,
+        nav:has(a:hover)::after {
+            @supports (corner-shape: squircle) {
+                corner-shape: squircle;
+                border-radius: 50%;
+            }
+
+            top: anchor(top);
+            left: anchor(left);
+            right: anchor(right);
+        }
+
+        nav:has(li:first-of-type a:hover)::before,
+        nav:has(li:first-of-type a:hover)::after {
+            @supports (corner-shape: squircle) {
+                border-radius: 32px 50% 50% 32px;
+            }
+        }
+
+        nav:has(li:last-of-type a:hover)::before,
+        nav:has(li:last-of-type a:hover)::after {
+            @supports (corner-shape: squircle) {
+                border-radius: 50% 32px 32px 50%;
+            }
+        }
+
+        nav a {
+            display: block;
+            padding: 0.7rem 1rem;
+            text-decoration: none;
+            color: white;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            border-radius: 6px;
+        }
+
+        nav a:hover {
+            position: relative;
+            display: block;
+            anchor-name: --test;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        html {
+            color-scheme: dark;
+        }
+
+        /* Hamburger button - hidden on desktop */
+        .hamburger-btn {
+            display: none;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.5rem;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 12px;
+            width: calc(100% - 2rem);
+            margin: 1rem;
+            text-align: left;
+            font-weight: 600;
+            z-index: 1001;
+            position: relative;
+        }
+
+        .hamburger-btn i {
+            margin-right: 10px;
+        }
+
+        /* Mobile menu */
+        .nav-mobile {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: auto;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 26, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 16px 24px 28px;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 999;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .nav-mobile.open {
+            display: flex;
+            transform: translateY(0);
+        }
+
+        .nav-mobile a {
+            color: var(--text-soft);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 12px 16px;
+            border-radius: 10px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .nav-mobile a:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+        }
+
+        .nav-mobile .nav-cta {
+            background: var(--brand) !important;
+            color: var(--white) !important;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .nav-mobile .nav-donate {
+            background: rgba(231, 76, 60, 0.8) !important;
+            color: var(--white) !important;
+            text-align: center;
+        }
+
+        /* Special nav link styling */
+        .nav-cta {
+            background: rgba(11, 108, 246, 0.2);
+            border-radius: 6px;
+        }
+
+        .nav-donate {
+            background: rgba(231, 76, 60, 0.2);
+            border-radius: 6px;
+        }
+
+        /* RESPONSIVE BREAKPOINTS */
+        @media (max-width: 1100px) {
+            nav a {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            nav>ul {
+                gap: 0.1rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                margin: 1rem auto;
+                width: 95%;
+            }
+
+            nav a {
+                padding: 0.5rem 0.6rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* Hide desktop navbar, show hamburger */
+            nav:first-of-type {
+                display: none;
+            }
+
+            .hamburger-btn {
+                display: flex;
+                align-items: center;
+                position: fixed;
+                top: 10px;
+                left: 0;
+                right: 0;
+                z-index: 1002;
+                margin: 0.5rem;
+                width: calc(100% - 1rem);
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(16px);
+            }
+
+            body {
+                padding-top: 70px;
+            }
+
+            /* Adjust hero spacing for mobile navbar */
+            #hero {
+                padding-top: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hamburger-btn {
+                font-size: 1.2rem;
+                padding: 10px 16px;
+            }
+
+            .nav-mobile a {
+                font-size: 0.9rem;
+                padding: 10px 14px;
+            }
+        }
+
+        .hero {
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            padding: 140px 28px 80px;
+        }
+
+        .hero-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(11, 108, 246, .12);
+            border: 1px solid rgba(11, 108, 246, .3);
+            color: var(--brand);
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 24px;
+        }
+
+        .hero-eyebrow span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.4rem);
+            line-height: 1.08;
+            letter-spacing: -.03em;
+            color: var(--white);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero h1 strong {
+            color: var(--brand);
+        }
+
+        .hero p {
+            color: var(--text-soft);
+            font-size: 1.05rem;
+            max-width: 560px;
+            line-height: 1.75;
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary,
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 48px;
+            padding: 13px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: .95rem;
+            text-decoration: none;
+            border: 0;
+            cursor: pointer;
+            transition: transform .2s, background .2s, box-shadow .2s;
+        }
+
+        .btn-primary {
+            background: var(--brand);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(11, 108, 246, .35);
+        }
+
+        .btn-primary:hover {
+            background: var(--brand-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(11, 108, 246, .45);
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, .06);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, .12);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, .1);
+            transform: translateY(-2px);
+        }
+
+        .hero-panel {
+            background: rgba(28, 35, 51, .82);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: var(--radius);
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, .35);
+        }
+
+        .hero-panel-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .metric {
+            background: rgba(10, 14, 26, .62);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .metric .num {
+            font-size: 1.55rem;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .metric .lbl {
+            font-size: .78rem;
+            color: var(--text-soft);
+        }
+
+        .service-preview {
+            display: grid;
+            gap: 10px;
+        }
+
+        .preview-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 10px;
+            padding: 13px 14px;
+        }
+
+        .preview-row span {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            font-weight: 700;
+            font-size: .92rem;
+        }
+
+        .preview-row i {
+            color: var(--accent);
+        }
+
+        .preview-row small {
+            color: var(--text-soft);
+            font-weight: 700;
+        }
+
+        section {
+            padding: 96px 28px;
+        }
+
+        .section-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 28px;
+            margin-bottom: 36px;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .section-label::before {
+            content: "";
+            width: 24px;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .section-title {
+            font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -.03em;
+            line-height: 1.15;
+        }
+
+        .section-sub {
+            color: var(--text-soft);
+            max-width: 620px;
+            margin-top: 14px;
+            font-size: .98rem;
+            line-height: 1.75;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 26px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, .06);
+            color: var(--text-soft);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 999px;
+            padding: 10px 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background .2s, color .2s, transform .2s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(11, 108, 246, .24);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .service-card {
+            background: var(--dark-3);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: var(--radius);
+            padding: 22px;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+        }
+
+        .service-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(11, 108, 246, .22), transparent 38%);
+            opacity: 0;
+            transition: opacity .25s;
+            pointer-events: none;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(11, 108, 246, .4);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, .28);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(11, 108, 246, .18);
+            color: var(--brand);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card h3,
+        .service-card p,
+        .service-card ul,
+        .service-card button {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card h3 {
+            color: var(--white);
+            font-size: 1.12rem;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: var(--text-soft);
+            font-size: .9rem;
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+
+        .service-card ul {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .service-card li {
+            color: var(--text-soft);
+            font-size: .84rem;
+            display: flex;
+            align-items: start;
+            gap: 9px;
+        }
+
+        .service-card li i {
+            color: var(--accent);
+            margin-top: 4px;
+            font-size: .72rem;
+        }
+
+        .card-actions {
+            margin-top: auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .small-btn {
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(255, 255, 255, .06);
+            color: var(--white);
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background .2s, transform .2s;
+        }
+
+        .small-btn:hover {
+            background: rgba(255, 255, 255, .1);
+            transform: translateY(-1px);
+        }
+
+        .small-btn.primary {
+            background: var(--brand);
+            border-color: transparent;
+        }
+
+        .small-btn.primary:hover {
+            background: var(--brand-dark);
+        }
+
+        #solutions {
+            background: var(--dark-2);
+        }
+
+        .solutions-layout {
+            display: grid;
+            grid-template-columns: .95fr 1.05fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .image-panel {
+            min-height: 520px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .08);
+            position: relative;
+            background: url("assets/images/COLO.jpg") center / cover no-repeat;
+        }
+
+        .image-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent, rgba(10, 14, 26, .92));
+        }
+
+        .image-panel-content {
+            position: absolute;
+            z-index: 1;
+            left: 24px;
+            right: 24px;
+            bottom: 24px;
+        }
+
+        .image-panel-content h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .image-panel-content p {
+            color: var(--text-soft);
+            max-width: 440px;
+        }
+
+        .accordion {
+            display: grid;
+            gap: 12px;
+        }
+
+        .accordion-item {
+            background: var(--dark-3);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .accordion-btn {
+            width: 100%;
+            background: transparent;
+            border: 0;
+            color: var(--white);
+            padding: 19px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 800;
+            text-align: left;
+        }
+
+        .accordion-btn span {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .accordion-btn i:first-child {
+            color: var(--brand);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .28s ease;
+        }
+
+        .accordion-content-inner {
+            padding: 0 20px 20px;
+            color: var(--text-soft);
+            font-size: .92rem;
+            line-height: 1.7;
+        }
+
+        .accordion-item.open .accordion-content {
+            max-height: 260px;
+        }
+
+        .accordion-item.open .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .fa-chevron-down {
+            transition: transform .2s;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .step-card {
+            background: var(--dark-3);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: var(--radius);
+            padding: 22px;
+            transition: transform .25s, border-color .25s;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 170, .42);
+        }
+
+        .step-num {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(0, 212, 170, .14);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .step-card h3 {
+            color: var(--white);
+            font-size: 1rem;
+            margin-bottom: 9px;
+        }
+
+        .step-card p {
+            color: var(--text-soft);
+            font-size: .86rem;
+            line-height: 1.65;
+        }
+
+        #quote {
+            background: var(--dark-2);
+        }
+
+        .quote-layout {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .quote-summary,
+        .quote-form {
+            background: var(--dark-3);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: var(--radius);
+            padding: 24px;
+        }
+
+        .selected-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .selected-pill {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 10px;
+            padding: 12px;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .selected-pill button {
+            background: transparent;
+            border: 0;
+            color: var(--text-soft);
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .empty-note {
+            color: var(--text-soft);
+            margin-top: 18px;
+            font-size: .92rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .form-field {
+            display: grid;
+            gap: 8px;
+        }
+
+        .form-field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            color: var(--text);
+            font-size: .82rem;
+            font-weight: 800;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: rgba(10, 14, 26, .62);
+            color: var(--white);
+            border-radius: 10px;
+            padding: 13px 14px;
+            font: inherit;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: rgba(11, 108, 246, .65);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-message {
+            display: none;
+            margin-top: 14px;
+            color: var(--accent);
+            font-weight: 800;
+            font-size: .92rem;
+        }
+
+        footer {
+            background: #070A12;
+            padding: 64px 28px 28px;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .footer-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+            gap: 34px;
+        }
+
+        .footer-brand a {
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .footer-brand span {
+            color: var(--brand);
+        }
+
+        .footer-brand p {
+            color: var(--text-soft);
+            margin-top: 14px;
+            max-width: 360px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: var(--text-soft);
+            transition: color .2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .footer-social-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            background: rgba(255, 255, 255, .06);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background .2s, transform .2s;
+        }
+
+        .footer-social-btn:hover {
+            background: var(--brand);
+            transform: translateY(-2px);
+        }
+
+        .footer-flags {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+        }
+
+        .footer-flag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-soft);
+            font-size: .84rem;
+        }
+
+        .footer-flag img {
+            width: 26px;
+            height: 18px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+
+        .footer-bottom {
+            margin-top: 42px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            color: var(--text-soft);
+            font-size: .88rem;
+        }
+
+        .wa-btn {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25D366;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            text-decoration: none;
+            z-index: 1001;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, .35);
+            transition: transform .2s;
+        }
+
+        .wa-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .55s ease, transform .55s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1100px) {
+            nav a {
+                padding: .55rem .72rem;
+                font-size: .8rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+
+            .hero-inner,
+            .solutions-layout,
+            .quote-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-panel {
+                max-width: 620px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hamburger-btn {
+                display: flex;
+                align-items: center;
+            }
+
+            .hero {
+                padding-top: 50px;
+            }
+
+            section {
+                padding: 72px 20px;
+            }
+
+            .section-head {
+                display: block;
+            }
+
+            .services-grid,
+            .process-grid,
+            .form-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .image-panel {
+                min-height: 360px;
+            }
+
+            .footer-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .hero-panel-top {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions {
+                align-items: stretch;
+            }
+
+            .btn-primary,
+            .btn-ghost {
+                width: 100%;
+            }
+
+            .footer-flags {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header with logo (top left) -->
+    <div class="header">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/images/Memeyailogo.jpg" alt="Logo">
+            </a>
+        </div>
+    </div>
+
+    <button class="hamburger-btn" id="hamburgerBtn">
+        <i class="fas fa-bars"></i> Menu
+    </button>
+
+    <nav>
+        <ul>
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="campaign.html">Campaigns</a>
+            <a href="arbanstream.html">ArbanTV</a>
+            <a href="hub.html">Hub</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
+        </ul>
+    </nav>
+
+    <!-- MOBILE NAVBAR -->
+    <div class="nav-mobile" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="campaign.html">Campaigns</a>
+        <a href="arbanstream.html">ArbanTV</a>
+        <a href="hub.html">Hub</a>
+        <a href="contact.html" class="nav-cta">Contact</a>
+    </div>
+    <main>
+        <div class="page-bg">
+            <section class="hero" id="top">
+                <div class="hero-inner">
+                    <div class="reveal">
+                        <div class="hero-eyebrow"><span></span> AI-powered digital services</div>
+                        <h1>Services built for brands that want to <strong>move faster.</strong></h1>
+                        <p>
+                            MemeyAI helps businesses, creators, campaigns, and digital platforms grow with web
+                            development,
+                            social media, community engagement, digital marketing, automation, and performance insight.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#services" class="btn-primary">
+                                <i class="fas fa-layer-group"></i>
+                                Explore Services
+                            </a>
+                            <a href="#quote" class="btn-ghost">
+                                <i class="fas fa-paper-plane"></i>
+                                Build a Brief
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="service-preview">
+                        <div class="preview-row">
+                            <span><i class="fas fa-code"></i> Web Development</span>
+                            <small>Launch</small>
+                        </div>
+                        <div class="preview-row">
+                            <span><i class="fas fa-bullhorn"></i> Digital Marketing</span>
+                            <small>Grow</small>
+                        </div>
+                        <div class="preview-row">
+                            <span><i class="fas fa-users"></i> Community Engagement</span>
+                            <small>Connect</small>
+                        </div>
+                        <div class="preview-row">
+                            <span><i class="fas fa-chart-line"></i> Performance Analysis</span>
+                            <small>Improve</small>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </section>
+        </div>
+
+        <section id="services">
+            <div class="section-inner">
+                <div class="section-head reveal">
+                    <div>
+                        <div class="section-label">Our Services</div>
+                        <h2 class="section-title">What we can do for you</h2>
+                        <p class="section-sub">
+                            Choose what your business needs today, then use the quote builder to send us a focused
+                            brief.
+                        </p>
+                    </div>
+                    <a href="#quote" class="btn-ghost">
+                        <i class="fas fa-plus"></i>
+                        Start Brief
+                    </a>
+                </div>
+
+                <div class="filters reveal" aria-label="Service filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="build">Build</button>
+                    <button class="filter-btn" data-filter="growth">Growth</button>
+                    <button class="filter-btn" data-filter="insight">Insight</button>
+                    <button class="filter-btn" data-filter="support">Support</button>
+                </div>
+
+                <div class="services-grid">
+                    <article class="service-card reveal" data-category="build" data-service="Web Development">
+                        <div class="service-icon"><i class="fas fa-code"></i></div>
+                        <h3>Web Development</h3>
+                        <p>Responsive, fast, and user-friendly websites built with modern standards.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Landing pages and company websites</li>
+                            <li><i class="fas fa-check"></i> Mobile-first layouts</li>
+                            <li><i class="fas fa-check"></i> Speed, SEO, and conversion structure</li>
+                        </ul>
+                        <div class="card-actions">
+                            <button class="small-btn primary add-service">Add to Brief</button>
+                            <button class="small-btn details-btn">Details</button>
+                        </div>
+                    </article>
+
+                    <article class="service-card reveal" data-category="growth" data-service="Social Media Management">
+                        <div class="service-icon"><i class="fas fa-share-nodes"></i></div>
+                        <h3>Social Media Management</h3>
+                        <p>End-to-end management of your platforms, from content planning to audience engagement.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Content calendars and posting</li>
+                            <li><i class="fas fa-check"></i> Platform growth strategy</li>
+                            <li><i class="fas fa-check"></i> Reporting and optimization</li>
+                        </ul>
+                        <div class="card-actions">
+                            <button class="small-btn primary add-service">Add to Brief</button>
+                            <button class="small-btn details-btn">Details</button>
+                        </div>
+                    </article>
+
+                    <article class="service-card reveal" data-category="support" data-service="Community Engagement">
+                        <div class="service-icon"><i class="fas fa-users"></i></div>
+                        <h3>Community Engagement</h3>
+                        <p>Build loyal online communities through authentic interaction and cultural relevance.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Community moderation</li>
+                            <li><i class="fas fa-check"></i> Engagement campaigns</li>
+                            <li><i class="fas fa-check"></i> Brand advocacy and feedback loops</li>
+                        </ul>
+                        <div class="card-actions">
+                            <button class="small-btn primary add-service">Add to Brief</button>
+                            <button class="small-btn details-btn">Details</button>
+                        </div>
+                    </article>
+
+                    <article class="service-card reveal" data-category="growth" data-service="Digital Marketing">
+                        <div class="service-icon"><i class="fas fa-bullhorn"></i></div>
+                        <h3>Digital Marketing</h3>
+                        <p>Campaigns that connect with your audience and drive measurable action.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Paid and organic campaign planning</li>
+                            <li><i class="fas fa-check"></i> Creative messaging</li>
+                            <li><i class="fas fa-check"></i> Lead generation and conversion support</li>
+                        </ul>
+                        <div class="card-actions">
+                            <button class="small-btn primary add-service">Add to Brief</button>
+                            <button class="small-btn details-btn">Details</button>
+                        </div>
+                    </article>
+
+                    <article class="service-card reveal" data-category="build" data-service="Software Solutions">
+                        <div class="service-icon"><i class="fas fa-gears"></i></div>
+                        <h3>Software Solutions</h3>
+                        <p>Custom tools, automation, and digital infrastructure tailored to business needs.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Automation workflows</li>
+                            <li><i class="fas fa-check"></i> Internal dashboards</li>
+                            <li><i class="fas fa-check"></i> Secure, scalable custom systems</li>
+                        </ul>
+                        <div class="card-actions">
+                            <button class="small-btn primary add-service">Add to Brief</button>
+                            <button class="small-btn details-btn">Details</button>
+                        </div>
+                    </article>
+
+                    <article class="service-card reveal" data-category="insight" data-service="Optimization">
+                        <div class="service-icon"><i class="fas fa-gauge-high"></i></div>
+                        <h3>Optimization</h3>
+                        <p>Improve website performance, search visibility, user experience, and business impact.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> SEO and speed checks</li>
+                            <li><i class="fas fa-check"></i> Funnel improvement</li>
+                            <li><i class="fas fa-check"></i> Analytics-led recommendations</li>
+                        </ul>
+                        <div class="card-actions">
+                            <button class="small-btn primary add-service">Add to Brief</button>
+                            <button class="small-btn details-btn">Details</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="solutions">
+            <div class="section-inner">
+                <div class="section-head reveal">
+                    <div>
+                        <div class="section-label">Our Solutions</div>
+                        <h2 class="section-title">Innovative solutions we provide</h2>
+                        <p class="section-sub">
+                            The original service-details page is now shaped into a cleaner, stronger experience for your
+                            landing page.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="solutions-layout">
+                    <div class="image-panel reveal">
+                        <div class="image-panel-content">
+                            <h3>Strategy, execution, and support in one place.</h3>
+                            <p>
+                                From the first consultation to launch and improvement, MemeyAI supports the full digital
+                                growth path.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="accordion reveal">
+                        <div class="accordion-item open">
+                            <button class="accordion-btn">
+                                <span><i class="fas fa-chess-board"></i> Strategic Planning</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    We create practical plans for your goals, audience, platforms, timelines, content,
+                                    and digital operations.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-btn">
+                                <span><i class="fas fa-magnifying-glass-chart"></i> Market Research</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    We help you understand your audience, competitors, online behavior, and
+                                    opportunities before you invest heavily.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-btn">
+                                <span><i class="fas fa-chart-pie"></i> Performance Analysis</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    We analyze campaign, website, and social data so decisions are guided by what is
+                                    actually working.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <button class="accordion-btn">
+                                <span><i class="fas fa-headset"></i> Launch and Support</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    We help deploy, monitor, improve, and support your project after launch so it keeps
+                                    performing.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process">
+            <div class="section-inner">
+                <div class="section-head reveal">
+                    <div>
+                        <div class="section-label">How We Work</div>
+                        <h2 class="section-title">Clear process, reliable results</h2>
+                        <p class="section-sub">
+                            A simple four-step flow keeps every project focused, visible, and easy to move forward.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-grid">
+                    <div class="step-card reveal">
+                        <div class="step-num">01</div>
+                        <h3>Initial Consultation</h3>
+                        <p>We understand your business, goals, audience, current channels, and immediate priorities.</p>
+                    </div>
+                    <div class="step-card reveal">
+                        <div class="step-num">02</div>
+                        <h3>Planning and Strategy</h3>
+                        <p>We create a clear roadmap with the right service mix, milestones, deliverables, and measures.
+                        </p>
+                    </div>
+                    <div class="step-card reveal">
+                        <div class="step-num">03</div>
+                        <h3>Development Phase</h3>
+                        <p>We execute the plan with regular updates, creative direction, build work, and testing.</p>
+                    </div>
+                    <div class="step-card reveal">
+                        <div class="step-num">04</div>
+                        <h3>Launch and Support</h3>
+                        <p>We deploy, monitor performance, support your team, and adjust for stronger results.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quote">
+            <div class="section-inner">
+                <div class="section-head reveal">
+                    <div>
+                        <div class="section-label">Build Your Brief</div>
+                        <h2 class="section-title">Tell us what you need</h2>
+                        <p class="section-sub">
+                            Add services above, then send your brief through WhatsApp or submit the form.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="quote-layout">
+                    <div class="quote-summary reveal">
+                        <h3>Selected Services</h3>
+                        <p class="section-sub">
+                            Your chosen services will appear here.
+                        </p>
+                        <div class="selected-list" id="selectedList"></div>
+                        <p class="empty-note" id="emptyNote">No services selected yet.</p>
+                        <div style="margin-top: 20px;">
+                            <a href="https://wa.me/254794153677" target="_blank" class="btn-primary" id="whatsappBrief">
+                                <i class="fab fa-whatsapp"></i>
+                                Send on WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                    <form class="quote-form reveal" id="quoteForm">
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <label for="name">Your Name</label>
+                                <input id="name" type="text" placeholder="John Doe" required />
+                            </div>
+
+                            <div class="form-field">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" placeholder="john@example.com" required />
+                            </div>
+
+                            <div class="form-field">
+                                <label for="phone">Phone</label>
+                                <input id="phone" type="tel" placeholder="+254 7XX XXX XXX" />
+                            </div>
+
+                            <div class="form-field">
+                                <label for="budget">Budget Range</label>
+                                <select id="budget">
+                                    <option value="Not selected">Select budget</option>
+                                    <option value="Under KES 50,000">Under KES 50,000</option>
+                                    <option value="KES 50,000 - 150,000">KES 50,000 - 150,000</option>
+                                    <option value="KES 150,000 - 500,000">KES 150,000 - 500,000</option>
+                                    <option value="KES 500,000+">KES 500,000+</option>
+                                </select>
+                            </div>
+
+                            <div class="form-field full">
+                                <label for="message">Project Details</label>
+                                <textarea id="message"
+                                    placeholder="Tell us about your project, timeline, goals, and platforms..."
+                                    required></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary" style="margin-top: 16px;">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Brief
+                        </button>
+
+                        <div class="form-message" id="formMessage">
+                            Thank you. Your brief is ready. You can also send it through WhatsApp.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html">Memey<span>AI</span></a>
+                    <p>Northern By-pass, Thome Sq, Nairobi, Kenya. Delivering innovative AI and digital solutions across
+                        Africa.</p>
+
+                    <div class="footer-socials">
+                        <a href="https://x.com/MemeyAIOfficial" target="_blank" class="footer-social-btn"><i
+                                class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=61565001413644" target="_blank"
+                            class="footer-social-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/memeyaiofficial/" target="_blank"
+                            class="footer-social-btn"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/102518929/" target="_blank"
+                            class="footer-social-btn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="https://business.memeyai.com/about.html" target="_blank">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#quote">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Digital Marketing</a></li>
+                        <li><a href="#services">Community Engagement</a></li>
+                        <li><a href="#services">Software Solutions</a></li>
+                        <li><a href="#services">Optimization</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Regional Presence</h4>
+                    <div class="footer-flags">
+                        <div class="footer-flag"><img src="https://business.memeyai.com/assets/img/Kenya.JPG"
+                                alt="Kenya" /><span>Kenya</span></div>
+                        <div class="footer-flag"><img src="https://business.memeyai.com/assets/img/Tanzania.JPG"
+                                alt="Tanzania" /><span>Tanzania</span></div>
+                        <div class="footer-flag"><img src="https://business.memeyai.com/assets/img/Rwanda.JPG"
+                                alt="Rwanda" /><span>Rwanda</span></div>
+                        <div class="footer-flag"><img src="https://business.memeyai.com/assets/img/Uganda.JPG"
+                                alt="Uganda" /><span>Uganda</span></div>
+                        <div class="footer-flag"><img src="https://business.memeyai.com/assets/img/South Africa.JPG"
+                                alt="South Africa" /><span>S. Africa</span></div>
+                        <div class="footer-flag"><img src="https://business.memeyai.com/assets/img/Ethiopia.JPG"
+                                alt="Ethiopia" /><span>Ethiopia</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>Copyright 2026 <strong>MemeyAI</strong>. All Rights Reserved.</span>
+                <span>Designed by MemeyAI Digital Solutions</span>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/254794153677" target="_blank" class="wa-btn" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle("open");
+            hamburgerBtn.innerHTML = mobileMenu.classList.contains("open")
+                ? '<i class="fas fa-times"></i> Close'
+                : '<i class="fas fa-bars"></i> Menu';
+        }
+
+        hamburgerBtn.addEventListener("click", toggleMobileMenu);
+
+        document.querySelectorAll(".nav-mobile a").forEach((link) => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.remove("open");
+                hamburgerBtn.innerHTML = '<i class="fas fa-bars"></i> Menu';
+            });
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 768) {
+                mobileMenu.classList.remove("open");
+                hamburgerBtn.innerHTML = '<i class="fas fa-bars"></i> Menu';
+            }
+        });
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const serviceCards = document.querySelectorAll(".service-card");
+
+        filterButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const filter = button.dataset.filter;
+
+                filterButtons.forEach((btn) => btn.classList.remove("active"));
+                button.classList.add("active");
+
+                serviceCards.forEach((card) => {
+                    const show = filter === "all" || card.dataset.category === filter;
+                    card.style.display = show ? "flex" : "none";
+                });
+            });
+        });
+
+        serviceCards.forEach((card) => {
+            card.addEventListener("mousemove", (event) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((event.clientX - rect.left) / rect.width) * 100;
+                const y = ((event.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty("--mx", x + "%");
+                card.style.setProperty("--my", y + "%");
+            });
+        });
+
+        document.querySelectorAll(".accordion-btn").forEach((button) => {
+            button.addEventListener("click", () => {
+                const item = button.closest(".accordion-item");
+                document.querySelectorAll(".accordion-item").forEach((other) => {
+                    if (other !== item) other.classList.remove("open");
+                });
+                item.classList.toggle("open");
+            });
+        });
+
+        const selectedServices = new Set();
+        const selectedList = document.getElementById("selectedList");
+        const emptyNote = document.getElementById("emptyNote");
+        const whatsappBrief = document.getElementById("whatsappBrief");
+
+        function updateSelectedServices() {
+            selectedList.innerHTML = "";
+
+            if (selectedServices.size === 0) {
+                emptyNote.style.display = "block";
+            } else {
+                emptyNote.style.display = "none";
+            }
+
+            selectedServices.forEach((service) => {
+                const pill = document.createElement("div");
+                pill.className = "selected-pill";
+                pill.innerHTML = `
+                    <span>${service}</span>
+                    <button type="button" aria-label="Remove ${service}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+
+                pill.querySelector("button").addEventListener("click", () => {
+                    selectedServices.delete(service);
+                    updateSelectedServices();
+                });
+
+                selectedList.appendChild(pill);
+            });
+
+            const servicesText = selectedServices.size
+                ? Array.from(selectedServices).join(", ")
+                : "I would like to ask about MemeyAI services.";
+
+            const message = encodeURIComponent(
+                "Hello MemeyAI, I am interested in: " + servicesText
+            );
+
+            whatsappBrief.href = "https://wa.me/254794153677?text=" + message;
+        }
+
+        document.querySelectorAll(".add-service").forEach((button) => {
+            button.addEventListener("click", () => {
+                const card = button.closest(".service-card");
+                selectedServices.add(card.dataset.service);
+                updateSelectedServices();
+                document.getElementById("quote").scrollIntoView({ behavior: "smooth" });
+            });
+        });
+
+        document.querySelectorAll(".details-btn").forEach((button) => {
+            button.addEventListener("click", () => {
+                const card = button.closest(".service-card");
+                card.querySelector(".add-service").click();
+            });
+        });
+
+        document.getElementById("quoteForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const budget = document.getElementById("budget").value;
+            const details = document.getElementById("message").value.trim();
+            const services = selectedServices.size
+                ? Array.from(selectedServices).join(", ")
+                : "General service inquiry";
+
+            const brief = [
+                "Hello MemeyAI,",
+                "Name: " + name,
+                phone ? "Phone: " + phone : "",
+                "Services: " + services,
+                "Budget: " + budget,
+                "Project details: " + details
+            ].filter(Boolean).join("\\n");
+
+            whatsappBrief.href = "https://wa.me/254794153677?text=" + encodeURIComponent(brief);
+
+            document.getElementById("formMessage").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("formMessage").style.display = "none";
+            }, 5000);
+        });
+
+        updateSelectedServices();
+    </script>
+</body>
+
+</html>
+```

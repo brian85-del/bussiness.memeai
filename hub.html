@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MemeyHub | MemeyAI</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        :root {
+            --brand: #0B6CF6;
+            --brand-2: #00D4AA;
+            --orange: #FF5A1F;
+            --dark: #0A0E1A;
+            --dark-2: #111827;
+            --panel: rgba(255, 255, 255, 0.07);
+            --line: rgba(255, 255, 255, 0.14);
+            --text: #E8EEF8;
+            --muted: #A8B3C7;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .page {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 16% 10%, rgba(11, 108, 246, 0.3), transparent 32%),
+                radial-gradient(circle at 82% 15%, rgba(0, 212, 170, 0.18), transparent 30%),
+                linear-gradient(180deg, #0A0E1A 0%, #111827 46%, #0A0E1A 100%);
+        }
+
+        /* ─── HERO BG WRAPPER (covers both header and hero) ─── */
+        .hero-bg-wrapper {
+            background-image: url('assets/images/background.png');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+
+        /* Header inside wrapper - no background, just positioning */
+        .hero-bg-wrapper .header {
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero-bg-wrapper .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        /* Hero section inside wrapper - transparent background */
+        .hero-bg-wrapper .hero-section {
+            padding: 100px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        /* Remove the old #hero background since wrapper handles it */
+        #hero {
+            min-height: auto;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            padding: 40px 28px 80px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+
+        /* ─── NAVBAR (OPTIMIZED FOR MOBILE) ─── */
+        html {
+            interpolate-size: allow-keywords;
+        }
+
+        /* Desktop navbar */
+        nav {
+            width: auto;
+            max-width: calc(100% - 2rem);
+            margin: 0;
+            padding: 8px;
+            border-radius: 8px;
+            position: fixed;
+            top: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+
+        @supports (corner-shape: squircle) {
+            nav {
+                border-radius: 24px;
+                border-shape: squircle;
+            }
+        }
+
+        nav ul:has(:not(:hover)) {
+            anchor-name: --test;
+        }
+
+        nav::before {
+            z-index: -2;
+            background-attachment: scroll;
+            background-image: url('assets/images/header background.webp');
+        }
+
+        nav::after {
+            backdrop-filter: blur(2px);
+            background-color: hsl(200 100% 100% / 0.1);
+            z-index: -1;
+        }
+
+        nav>ul {
+            position: relative;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        nav>ul::after {
+            content: "";
+            position: absolute;
+            z-index: -3;
+            inset: -8px;
+            border-radius: 8px;
+            background: hsl(0 0% 0% / 0.8);
+            backdrop-filter: blur(2px);
+        }
+
+        @supports (corner-shape: squircle) {
+            nav>ul::after {
+                border-radius: 24px;
+                border-shape: squircle;
+            }
+        }
+
+        nav::before,
+        nav::after {
+            content: "";
+            border-radius: 8px;
+            position-anchor: --test;
+            position: absolute;
+            top: calc(anchor(bottom) - 4px);
+            left: calc(anchor(left) + 1rem);
+            right: calc(anchor(right) + 1rem);
+            bottom: anchor(bottom);
+            transition: 500ms;
+            transition-timing-function: linear(0,
+                    0.008 1.1%,
+                    0.031 2.2%,
+                    0.129 4.8%,
+                    0.257 7.2%,
+                    0.671 14.2%,
+                    0.789 16.5%,
+                    0.881 18.6%,
+                    0.957 20.7%,
+                    1.019 22.9%,
+                    1.063 25.1%,
+                    1.094 27.4%,
+                    1.114 30.7%,
+                    1.112 34.5%,
+                    1.018 49.9%,
+                    0.99 59.1%,
+                    1);
+            pointer-events: none;
+        }
+
+        nav:has(a:hover)::before,
+        nav:has(a:hover)::after {
+            @supports (corner-shape: squircle) {
+                corner-shape: squircle;
+                border-radius: 50%;
+            }
+
+            top: anchor(top);
+            left: anchor(left);
+            right: anchor(right);
+        }
+
+        nav:has(li:first-of-type a:hover)::before,
+        nav:has(li:first-of-type a:hover)::after {
+            @supports (corner-shape: squircle) {
+                border-radius: 32px 50% 50% 32px;
+            }
+        }
+
+        nav:has(li:last-of-type a:hover)::before,
+        nav:has(li:last-of-type a:hover)::after {
+            @supports (corner-shape: squircle) {
+                border-radius: 50% 32px 32px 50%;
+            }
+        }
+
+        nav a {
+            display: block;
+            padding: 0.7rem 1rem;
+            text-decoration: none;
+            color: white;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            border-radius: 6px;
+        }
+
+        nav a:hover {
+            position: relative;
+            display: block;
+            anchor-name: --test;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        html {
+            color-scheme: dark;
+        }
+
+        /* Hamburger button - hidden on desktop */
+        .hamburger-btn {
+            display: none;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.5rem;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 12px;
+            width: calc(100% - 2rem);
+            margin: 1rem;
+            text-align: left;
+            font-weight: 600;
+            z-index: 1001;
+            position: relative;
+        }
+
+        .hamburger-btn i {
+            margin-right: 10px;
+        }
+
+        /* Mobile menu */
+        .nav-mobile {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: auto;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 26, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 16px 24px 28px;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 999;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .nav-mobile.open {
+            display: flex;
+            transform: translateY(0);
+        }
+
+        .nav-mobile a {
+            color: var(--text-soft);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 12px 16px;
+            border-radius: 10px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .nav-mobile a:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+        }
+
+        .nav-mobile .nav-cta {
+            background: var(--brand) !important;
+            color: var(--white) !important;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .nav-mobile .nav-donate {
+            background: rgba(231, 76, 60, 0.8) !important;
+            color: var(--white) !important;
+            text-align: center;
+        }
+
+        /* Special nav link styling */
+        .nav-cta {
+            background: rgba(11, 108, 246, 0.2);
+            border-radius: 6px;
+        }
+
+        .nav-donate {
+            background: rgba(231, 76, 60, 0.2);
+            border-radius: 6px;
+        }
+
+        /* RESPONSIVE BREAKPOINTS */
+        @media (max-width: 1100px) {
+            nav a {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            nav>ul {
+                gap: 0.1rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                margin: 1rem auto;
+                width: 95%;
+            }
+
+            nav a {
+                padding: 0.5rem 0.6rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* Hide desktop navbar, show hamburger */
+            nav:first-of-type {
+                display: none;
+            }
+
+            .hamburger-btn {
+                display: flex;
+                align-items: center;
+                position: fixed;
+                top: 10px;
+                left: 0;
+                right: 0;
+                z-index: 1002;
+                margin: 0.5rem;
+                width: calc(100% - 1rem);
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(16px);
+            }
+
+            body {
+                padding-top: 70px;
+            }
+
+            /* Adjust hero spacing for mobile navbar */
+            #hero {
+                padding-top: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hamburger-btn {
+                font-size: 1.2rem;
+                padding: 10px 16px;
+            }
+
+            .nav-mobile a {
+                font-size: 0.9rem;
+                padding: 10px 14px;
+            }
+        }
+
+        .hero {
+            min-height: 100vh;
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 132px 0 70px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+            align-items: center;
+            gap: 48px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            padding: 8px 11px;
+            border: 1px solid rgba(0, 212, 170, 0.35);
+            border-radius: 999px;
+            background: rgba(0, 212, 170, 0.09);
+            color: #A9FFF0;
+            font-size: 0.86rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            max-width: 760px;
+            color: var(--white);
+            font-size: clamp(3rem, 7vw, 6.6rem);
+            line-height: 0.92;
+            letter-spacing: 0;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            color: var(--brand-2);
+        }
+
+        .hero p {
+            max-width: 680px;
+            color: var(--muted);
+            font-size: clamp(1rem, 2vw, 1.18rem);
+            margin-bottom: 28px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 34px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 46px;
+            padding: 12px 17px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .btn.primary {
+            background: var(--brand);
+            color: var(--white);
+            border-color: transparent;
+            box-shadow: 0 18px 40px rgba(11, 108, 246, 0.28);
+        }
+
+        .btn.secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            max-width: 610px;
+        }
+
+        .stat {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--white);
+            font-size: 1.45rem;
+            line-height: 1.1;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 0.86rem;
+        }
+
+        .hero-collage {
+            position: relative;
+            min-height: 570px;
+        }
+
+        .collage-card {
+            position: absolute;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+        }
+
+        .collage-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .collage-card.one {
+            inset: 0 12% 22% 0;
+        }
+
+        .collage-card.two {
+            right: 0;
+            bottom: 0;
+            width: 62%;
+            height: 46%;
+        }
+
+        .collage-card.three {
+            left: 7%;
+            bottom: 8%;
+            width: 38%;
+            height: 28%;
+        }
+
+        .floating-badge {
+            position: absolute;
+            top: 32px;
+            right: 0;
+            width: min(260px, 72%);
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(10, 14, 26, 0.84);
+            backdrop-filter: blur(18px);
+        }
+
+        .floating-badge i {
+            color: var(--brand-2);
+            margin-right: 8px;
+        }
+
+        section {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 82px 0;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 26px;
+            margin-bottom: 28px;
+        }
+
+        .section-head h2 {
+            color: var(--white);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1;
+            letter-spacing: 0;
+        }
+
+        .section-head p {
+            max-width: 560px;
+            color: var(--muted);
+        }
+
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .program-card {
+            min-height: 218px;
+            padding: 20px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            cursor: pointer;
+            transition: 0.22s ease;
+        }
+
+        .program-card:hover,
+        .program-card.active {
+            transform: translateY(-4px);
+            border-color: rgba(0, 212, 170, 0.6);
+            background: rgba(0, 212, 170, 0.1);
+        }
+
+        .program-card i {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--brand-2);
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+        }
+
+        .program-card h3 {
+            color: var(--white);
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .program-card p {
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+
+        .carousel-section {
+            width: 100%;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .carousel-inner {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto 28px;
+        }
+
+        .carousel-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .control-btn {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 10px 13px;
+            background: rgba(255, 255, 255, 0.07);
+            color: var(--white);
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        .control-btn.active {
+            background: var(--brand-2);
+            color: #06110F;
+            border-color: transparent;
+        }
+
+        .photo-row {
+            --duration: 38s;
+            --direction: normal;
+            display: flex;
+            gap: 16px;
+            width: max-content;
+            margin: 16px 0;
+            animation: slideRow var(--duration) linear infinite;
+            animation-direction: var(--direction);
+        }
+
+        .photo-row:hover {
+            animation-play-state: paused;
+        }
+
+        .photo-row.reverse {
+            --direction: reverse;
+            --duration: 44s;
+        }
+
+        .photo-row.slow {
+            --duration: 52s;
+        }
+
+        .photo-card {
+            position: relative;
+            flex: 0 0 auto;
+            width: clamp(250px, 28vw, 390px);
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--panel);
+            box-shadow: 0 20px 58px rgba(0, 0, 0, 0.28);
+        }
+
+        .photo-card.tall {
+            aspect-ratio: 4 / 3;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.35s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.06);
+        }
+
+        .photo-card span {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            padding: 7px 10px;
+            border-radius: 8px;
+            background: rgba(10, 14, 26, 0.72);
+            color: var(--white);
+            font-size: 0.84rem;
+            font-weight: 800;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideRow {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .impact-band {
+            width: min(1180px, calc(100% - 40px));
+            margin: 30px auto 0;
+            padding: 36px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background:
+                linear-gradient(135deg, rgba(11, 108, 246, 0.22), rgba(0, 212, 170, 0.12)),
+                rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .impact-band h2 {
+            color: var(--white);
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            line-height: 1.05;
+            margin-bottom: 8px;
+        }
+
+        .impact-band p {
+            color: var(--muted);
+            max-width: 720px;
+        }
+
+        footer {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 54px 0 30px;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            border-top: 1px solid var(--line);
+        }
+
+        .socials {
+            display: flex;
+            gap: 10px;
+        }
+
+        .socials a {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--white);
+        }
+
+        .whatsapp {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 25;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 999px;
+            background: #25D366;
+            color: #06160C;
+            font-weight: 900;
+            box-shadow: 0 18px 44px rgba(37, 211, 102, 0.28);
+        }
+
+        @media (max-width: 920px) {
+            .menu-btn {
+                display: grid;
+                place-items: center;
+            }
+
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .navbar.open {
+                align-items: flex-start;
+                flex-wrap: wrap;
+            }
+
+            .navbar.open .nav-links {
+                display: grid;
+                width: 100%;
+                gap: 4px;
+            }
+
+            .navbar.open .nav-cta {
+                display: inline-flex;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-collage {
+                min-height: 480px;
+            }
+
+            .program-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-head,
+            .impact-band,
+            footer {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 560px) {
+
+            .hero,
+            section,
+            .carousel-inner,
+            .impact-band,
+            footer {
+                width: min(100% - 28px, 1180px);
+            }
+
+            .hero {
+                padding-top: 118px;
+            }
+
+            .hero h1 {
+                font-size: 3.1rem;
+            }
+
+            .stats,
+            .program-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-collage {
+                min-height: 390px;
+            }
+
+            .floating-badge {
+                top: 12px;
+                right: 12px;
+            }
+
+            .photo-card {
+                width: 260px;
+            }
+
+            .whatsapp span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HERO BG WRAPPER - This covers both header and hero section -->
+    <div class="hero-bg-wrapper">
+
+        <!-- Header with logo (top left) -->
+        <div class="header">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/Memeyailogo.jpg" alt="Logo">
+                </a>
+            </div>
+        </div>
+
+        <!-- HAMBURGER BUTTON (Mobile only) -->
+        <button class="hamburger-btn" id="hamburgerBtn">
+            <i class="fas fa-bars"></i> Menu
+        </button>
+
+        <!-- DESKTOP NAVBAR -->
+        <nav>
+            <ul>
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="about.html">About</a>
+                <a href="campaign.html">Campaigns</a>
+                <a href="arbanstream.html">ArbanTV</a>
+                <a href="hub.html">Hub</a>
+                <a href="contact.html" class="nav-cta">Contact</a>
+            </ul>
+        </nav>
+
+        <!-- MOBILE NAVBAR -->
+        <div class="nav-mobile" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="campaign.html">Campaigns</a>
+            <a href="arbanstream.html">ArbanTV</a>
+            <a href="hub.html">Hub</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
+        </div>
+
+
+        <main>
+            <section class="hero">
+                <div>
+                    <div class="eyebrow">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        Innovation and skills acceleration
+                    </div>
+
+                    <h1>MemeyHub turns bold ideas into <span>real impact</span></h1>
+
+                    <p>
+                        MemeyHub Academy equips young innovators, creatives, and entrepreneurs with hands-on skills in
+                        AI,
+                        media production, coding, design thinking, branding, monetization, and digital storytelling.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="btn primary" href="#gallery">
+                            <i class="fa-solid fa-images"></i>
+                            View Gallery
+                        </a>
+                        <a class="btn secondary" href="#programs">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            Explore Programs
+                        </a>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat">
+                            <strong data-count="6">0</strong>
+                            <span>Skill tracks</span>
+                        </div>
+                        <div class="stat">
+                            <strong data-count="25">0</strong>
+                            <span>Workshop moments</span>
+                        </div>
+                        <div class="stat">
+                            <strong data-count="9">0</strong>
+                            <span>Regional partners</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-collage">
+                    <div class="collage-card one">
+                        <img src="assets/images/hub/hub.jpg" alt="MemeyHub workshop" />
+                    </div>
+
+                    <div class="collage-card two">
+                        <img src="assets/images/hub/hub27.jpeg" alt="MemeyHub academy session" />
+                    </div>
+
+                    <div class="collage-card three">
+                        <img src="assets/images/hub/hub.jpg" alt="MemeyHub creators" />
+                    </div>
+
+                    <div class="floating-badge">
+                        <p>
+                            <i class="fa-solid fa-circle-check"></i>
+                            A launchpad where mentorship, community, and creative tools meet.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="programs">
+                <div class="section-head">
+                    <h2>Built for Africa’s next builders</h2>
+                    <p>
+                        MemeyHub blends local creativity with global innovation through practical training, workshops,
+                        and community.
+                    </p>
+                </div>
+
+                <div class="program-grid">
+                    <article class="program-card active">
+                        <i class="fa-solid fa-robot"></i>
+                        <h3>AI Skills</h3>
+                        <p>Hands-on learning for modern tools, automation, and creative AI workflows.</p>
+                    </article>
+
+                    <article class="program-card">
+                        <i class="fa-solid fa-camera"></i>
+                        <h3>Media Production</h3>
+                        <p>Storytelling, production, podcasting, video, content packaging, and distribution.</p>
+                    </article>
+
+                    <article class="program-card">
+                        <i class="fa-solid fa-code"></i>
+                        <h3>Coding</h3>
+                        <p>Practical digital skills for web, product building, and technology problem solving.</p>
+                    </article>
+
+                    <article class="program-card">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <h3>Monetization</h3>
+                        <p>Branding, business thinking, content value, campaigns, and income pathways.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="carousel-section" id="gallery">
+                <div class="carousel-inner">
+                    <div class="section-head">
+                        <h2>Hub moments in motion</h2>
+                        <p>
+                            Each row moves like a carousel. Hover over a row to pause it, or use the controls to change
+                            speed.
+                        </p>
+                    </div>
+
+                    <div class="carousel-controls">
+                        <button class="control-btn active" data-speed="normal">Normal</button>
+                        <button class="control-btn" data-speed="slow">Slow</button>
+                        <button class="control-btn" data-speed="fast">Fast</button>
+                        <button class="control-btn" id="toggleMotion">
+                            <i class="fa-solid fa-pause"></i>
+                            Pause
+                        </button>
+                    </div>
+                </div>
+
+                <div class="photo-row" data-row>
+                    <div class="photo-card"><img src="assets/images/hub/hub38.jpeg"
+                            alt="MemeyHub workshop" /><span>Workshop</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub27.jpeg"
+                            alt="MemeyHub workshop" /><span>Academy</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub18.jpeg"
+                            alt="MemeyHub workshop" /><span>Innovation</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub3.jpeg"
+                            alt="MemeyHub workshop" /><span>Training</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub8.jpeg"
+                            alt="MemeyHub workshop" /><span>Community</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub5.jpeg"
+                            alt="MemeyHub workshop" /><span>Mentorship</span></div>
+
+                    <div class="photo-card"><img src="assets/images/hub/hub38.jpeg"
+                            alt="MemeyHub workshop" /><span>Workshop</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub27.jpeg"
+                            alt="MemeyHub workshop" /><span>Academy</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub18.jpeg"
+                            alt="MemeyHub workshop" /><span>Innovation</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub3.jpeg"
+                            alt="MemeyHub workshop" /><span>Training</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub8.jpeg"
+                            alt="MemeyHub workshop" /><span>Community</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub5.jpeg"
+                            alt="MemeyHub workshop" /><span>Mentorship</span></div>
+                </div>
+
+                <div class="photo-row reverse" data-row>
+                    <div class="photo-card tall"><img src="assets/images/hub/hub7.jpeg"
+                            alt="MemeyHub workshop" /><span>Creators</span></div>
+                    <div class="photo-card tall"><img src="assets/images/hub/hub40.jpg"
+                            alt="MemeyHub workshop" /><span>Ideas</span></div>
+                    <div class="photo-card tall"><img src="assets/images/hub/hub10.jpeg"
+                            alt="MemeyHub workshop" /><span>Learning</span></div>
+                    <div class="photo-card tall"><img src="assets/images/hub/hub9.jpeg"
+                            alt="MemeyHub workshop" /><span>Growth</span></div>
+                    <div class="photo-card tall"><img src="assets/images/hub/hub15.jpeg"
+                            alt="MemeyHub workshop" /><span>Design</span></div>
+                    <div class="photo-card tall"><img src="assets/images/hub/hub14.jpeg"
+                            alt="MemeyHub workshop" /><span>Teamwork</span></div>
+
+                    <div class="photo-card tall"><img src="assets/images/hub/hub7.jpeg"
+                            alt="MemeyHub workshop" /><span>Creators</span></div>
+                    <div class="photo-card tall"><img src="assets/images/hub/hub40.jpg"
+                            alt="MemeyHub workshop" /><span>Ideas</span></div>
+                    <div class="photo-card tall"><img src="assets/images/hub/hub10.jpeg"
+                            alt="MemeyHub workshop" /><span>Learning</span></div>
+                    <div class="photo-card tall"><img src="assets/images/hub/hub9.jpeg"
+                            alt="MemeyHub workshop" /><span>Growth</span></div>
+                    <div class="photo-card tall"><img src="assets/images/hub/hub15.jpeg"
+                            alt="MemeyHub workshop" /><span>Design</span></div>
+                    <div class="photo-card tall"><img src="assets/images/hub/hub14.jpeg"
+                            alt="MemeyHub workshop" /><span>Teamwork</span></div>
+                </div>
+
+                <div class="photo-row slow" data-row>
+                    <div class="photo-card"><img src="assets/images/hub/hub17.jpeg"
+                            alt="MemeyHub workshop" /><span>Builders</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub18.jpeg"
+                            alt="MemeyHub workshop" /><span>Digital
+                            Skills</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub20.jpeg"
+                            alt="MemeyHub workshop" /><span>Culture</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub29.jpeg"
+                            alt="MemeyHub workshop" /><span>Impact</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub30.jpeg"
+                            alt="MemeyHub workshop" /><span>Launchpad</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub4.jpeg"
+                            alt="MemeyHub workshop" /><span>Innovation</span></div>
+
+                    <div class="photo-card"><img src="assets/images/hub/hub17.jpeg"
+                            alt="MemeyHub workshop" /><span>Builders</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub18.jpeg"
+                            alt="MemeyHub workshop" /><span>Digital
+                            Skills</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub20.jpeg"
+                            alt="MemeyHub workshop" /><span>Culture</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub29.jpeg"
+                            alt="MemeyHub workshop" /><span>Impact</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub30.jpeg"
+                            alt="MemeyHub workshop" /><span>Launchpad</span></div>
+                    <div class="photo-card"><img src="assets/images/hub/hub4.jpeg"
+                            alt="MemeyHub workshop" /><span>Innovation</span></div>
+                </div>
+            </section>
+
+            <div class="impact-band">
+                <div>
+                    <h2>More than a learning space</h2>
+                    <p>
+                        MemeyHub is a movement for innovators, creatives, founders, and digital disruptors ready to
+                        build what comes next.
+                    </p>
+                </div>
+                <a class="btn primary" href="contact.html">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Contact MemeyHub
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <div>
+                <strong style="color:#fff;">MemeyAI Digital Solutions</strong>
+                <p>Nairobi, Kenya | Relations@memeyai.com | +254 794 153677</p>
+            </div>
+
+            <div class="socials">
+                <a href="https://x.com/MemeyAIOfficial" target="_blank" rel="noopener" aria-label="X"><i
+                        class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61565001413644" target="_blank" rel="noopener"
+                    aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/memeyaiofficial/" target="_blank" rel="noopener"
+                    aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/102518929/admin/page-posts/published/" target="_blank"
+                    rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </footer>
+
+        <a class="whatsapp" href="https://wa.me/254794153677" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>Hello There!</span>
+        </a>
+    </div>
+
+    <script>
+        const navbar = document.getElementById("navbar");
+        const menuBtn = document.getElementById("menuBtn");
+        const rows = document.querySelectorAll("[data-row]");
+        const speedButtons = document.querySelectorAll("[data-speed]");
+        const toggleMotion = document.getElementById("toggleMotion");
+
+        menuBtn.addEventListener("click", () => {
+            navbar.classList.toggle("open");
+            const icon = menuBtn.querySelector("i");
+            icon.className = navbar.classList.contains("open")
+                ? "fa-solid fa-xmark"
+                : "fa-solid fa-bars";
+        });
+
+        document.querySelectorAll(".program-card").forEach((card) => {
+            card.addEventListener("click", () => {
+                document.querySelectorAll(".program-card").forEach((item) => item.classList.remove("active"));
+                card.classList.add("active");
+            });
+        });
+
+        speedButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const speed = button.dataset.speed;
+
+                speedButtons.forEach((item) => item.classList.remove("active"));
+                button.classList.add("active");
+
+                rows.forEach((row, index) => {
+                    if (speed === "slow") {
+                        row.style.setProperty("--duration", index === 1 ? "64s" : "58s");
+                    }
+
+                    if (speed === "normal") {
+                        row.style.setProperty("--duration", index === 1 ? "44s" : index === 2 ? "52s" : "38s");
+                    }
+
+                    if (speed === "fast") {
+                        row.style.setProperty("--duration", index === 1 ? "30s" : "26s");
+                    }
+                });
+            });
+        });
+
+        let paused = false;
+
+        toggleMotion.addEventListener("click", () => {
+            paused = !paused;
+
+            rows.forEach((row) => {
+                row.style.animationPlayState = paused ? "paused" : "running";
+            });
+
+            toggleMotion.innerHTML = paused
+                ? '<i class="fa-solid fa-play"></i> Play'
+                : '<i class="fa-solid fa-pause"></i> Pause';
+        });
+
+        const counters = document.querySelectorAll("[data-count]");
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                const el = entry.target;
+                const target = Number(el.dataset.count);
+                let current = 0;
+                const step = Math.max(1, Math.ceil(target / 28));
+
+                const timer = setInterval(() => {
+                    current += step;
+
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+
+                    el.textContent = current + "+";
+                }, 36);
+
+                countObserver.unobserve(el);
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach((counter) => countObserver.observe(counter));
+    </script>
+</body>
+
+</html>
